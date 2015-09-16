@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+  	
+	<bean id="user" class="org.lyc.ustc.spring.model.User">
+		<property name="id" value="2"></property>
+		<property name="username" value="bajie"></property>
+	</bean>
+    <!--
+    等于完成了HelloWorld helloworld ＝ new HelloWorld（）操作
+      -->
+      
+      
+	<bean id="helloWorld" class="org.lyc.ustc.spring.model.HelloWorld" /> 
+	<bean id="userDao" 	  class="org.lyc.ustc.spring.dao.UserDao" />
+	<!--autowire ="no" 表示不自动注入  -->
+	<bean id="userService" class="org.lyc.ustc.spring.service.UserService" >
+		
+ 		<property name="UserDao" ref="userDao" />
+ 
+	</bean>
+
+	
+	
+	 <bean id="userAction" class="org.lyc.ustc.spring.action.UserAction" scope="prototype" >
+		
+		<property name="UserService" ref="userService" />
+		<property name="user" ref="user"></property>
+		<property name="id" value="3"></property>
+		<property name="names">
+			<list>
+				<value>aaa</value>
+				<value>bbb</value>
+				<value>ccc</value>
+			</list>
+		</property>
+	</bean>
+	 
+	 
+	 <!-- <bean id="userAction" class="org.lyc.ustc.spring.action.UserAction" scope="prototype" >
+	 	<constructor-arg ref="userService"></constructor-arg>
+	 </bean>
+	  -->
+</beans>

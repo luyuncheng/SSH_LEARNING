@@ -1,0 +1,19 @@
+ package org.lyc.ustc.spring.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.lyc.ustc.spring.model.HelloWorld;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Test01 {
+//创建spring的工厂
+	private BeanFactory factory = new ClassPathXmlApplicationContext("beans.xml");
+
+	@Test
+	public void testhello(){
+		//通过工厂创建spring的对象
+		 HelloWorld hello = factory.getBean("hellowold");
+	}
+}

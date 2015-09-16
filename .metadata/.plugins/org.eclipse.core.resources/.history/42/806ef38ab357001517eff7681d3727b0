@@ -1,0 +1,12 @@
+package org.zttc.itat.model;
+
+import java.util.Set;
+
+public class Special {
+	private int id;
+	private String name;
+	private String type;
+	//专业与班级一对多的关系
+	private Set<Classroom> clas;
+	
+}

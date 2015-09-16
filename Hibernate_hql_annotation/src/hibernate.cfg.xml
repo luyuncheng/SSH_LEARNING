@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+<!-- hibernate 用来确定连接的数据库 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+<!-- hibernate 数据库的连接类 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        
+<!-- hibernate 数据库的连接字符串和用户名密码 -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/luyuncheng</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		
+<!-- hibernate 使用时会显示相应的sql -->
+		<property name="show_sql">true</property>
+		
+<!-- hibernate 会自动完成类到数据表的转换 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<mapping class="org.zttc.itat.model.Special"/>
+		<mapping class="org.zttc.itat.model.Student"/>
+		<mapping class="org.zttc.itat.model.Classroom"/>
+		<mapping class="org.zttc.itat.model.User"/>
+
+	</session-factory>
+</hibernate-configuration>

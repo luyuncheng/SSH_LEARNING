@@ -1,0 +1,25 @@
+package org.lyc.ustc.spring.dao;
+
+import org.lyc.ustc.spring.model.User;
+
+public class UserProxyDao implements IUserDao {
+
+	@Override
+	public void add(User use) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public User load(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

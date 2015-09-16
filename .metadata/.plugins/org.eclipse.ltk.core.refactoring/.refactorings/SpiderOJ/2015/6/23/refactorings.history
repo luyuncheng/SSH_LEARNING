@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SpiderOJ/src/com/lyc/search/code&apos; to &apos;code.cpp&apos;" description="Rename resource &apos;code&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/com/lyc/search/code" name="code.cpp" stamp="1433172534267" updateReferences="true"/>
+</session>

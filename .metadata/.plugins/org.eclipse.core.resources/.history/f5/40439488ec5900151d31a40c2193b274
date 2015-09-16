@@ -1,0 +1,41 @@
+package org.lyc.ustc.spring.action;
+
+import org.lyc.ustc.spring.dao.IUserDao;
+import org.lyc.ustc.spring.model.User;
+import org.lyc.ustc.spring.service.IUserService;
+
+public class UserAction {
+	private User user;
+	private IUserService userservice;
+	private int id;
+	 
+	public void add(){
+		userservice.add(user);
+	}
+	public void delete(){
+		userservice.delete(id);
+	}
+	public void load(){
+		 userservice.load(id);
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public IUserService getUserservice() {
+		return userservice;
+	}
+	public void setUserservice(IUserService userservice) {
+		this.userservice = userservice;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
+}

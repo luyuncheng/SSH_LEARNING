@@ -1,0 +1,32 @@
+package org.lyc.ustc.spring.dao;
+
+
+import org.lyc.ustc.spring.log.Logger;
+import org.lyc.ustc.spring.model.User;
+import org.springframework.stereotype.Component;
+
+@Component(name="userProxyDao")
+public class UserProxyDao implements IUserDao {
+	private IUserDao userDao;
+	
+	@Override
+	public void add(User use) {
+		// TODO Auto-generated method stub
+		
+		Logger.info("测试aop——proxy");
+		userDao.add(use);
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public User load(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

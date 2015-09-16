@@ -1,0 +1,12 @@
+package org.zttc.itat.test;
+
+import org.hibernate.Hibernate;
+import org.zttc.itat.util.HibernateUtil;
+
+public class TestHQL {
+	public void test01(){
+		Session session =null;
+		session = HibernateUtil.openSession();
+		
+	}
+}

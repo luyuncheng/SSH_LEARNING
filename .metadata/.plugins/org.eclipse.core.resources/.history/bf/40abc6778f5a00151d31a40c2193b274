@@ -1,0 +1,5 @@
+package org.zttc.itat.spring.dao;
+
+public class UserProxyDao implements IUserDao{
+
+}

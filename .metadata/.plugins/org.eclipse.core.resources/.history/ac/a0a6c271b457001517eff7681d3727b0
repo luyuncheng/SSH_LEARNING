@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.zttc.itat.model">
+	<class name="Classroom" table="t_classroom">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="name"></property>
+		<property name="grade"></property>
+		<many-to-one name="special" column="spe_id"></many-to-one>
+		<set name="stus" inverse="true" lazy="extra">
+			<key column="cid"> </key>
+			<one-to-many class="Student" />
+		</set>
+	</class>
+
+</hibernate-mapping>

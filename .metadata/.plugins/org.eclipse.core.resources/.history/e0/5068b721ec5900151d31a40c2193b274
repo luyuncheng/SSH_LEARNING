@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--
+    等于完成了HelloWorld helloworld ＝ new HelloWorld（）操作
+      -->
+	<bean id="helloWorld" class="org.lyc.ustc.spring.model.HelloWorld" /> 
+	<bean id="userDao" 	  class="org.lyc.ustc.spring.dao.UserDao" />
+	<bean id="userService" class="org.lyc.ustc.spring.service.UserService" >
+		
+		<property name="userDao" ref＝"userDao" />
+	</bean>
+	
+	<bean id="userAction" class="org.lyc.ustc.spring.action.UserAction" >
+		
+		<property name="userService" ref="userService" />
+	</bean>
+	
+</beans>

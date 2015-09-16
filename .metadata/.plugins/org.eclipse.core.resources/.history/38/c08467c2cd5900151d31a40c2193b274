@@ -1,0 +1,5 @@
+package org.lyc.ustc.spring.model;
+
+public class HelloWorld {
+
+}

@@ -1,0 +1,10 @@
+package org.zttc.itat.model;
+
+public class Student {
+	private int id;
+	private String name;
+	private String sex;
+	//学生与教室多对一
+	private Classroom classroom;
+	
+}

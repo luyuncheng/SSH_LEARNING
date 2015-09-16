@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestJdbc.testAdd" project="Spring_integrtion_jdbc" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="testAdd" classname="org.zttc.itat.test.TestJdbc" time="0.728"/>
+</testrun>

@@ -1,0 +1,18 @@
+1、导入Spring的包和数据库的驱动包
+2、选择一个数据源（DBCP和C3p0）
+3、导入数据源的包:DBCP
+4、在beans.xml中创建dataSource数据源
+5、创建一个jdbc.properties文件来设置数据库的连接信息
+	jdbc.driverClassName=com.mysql.jdbc.Driver
+	jdbc.url = jdbc:mysql://localhost:3306/spring_teach
+	jdbc.username = root
+	jdbc.password = 123456
+6、在beans.xml中导入相应的properties文件
+	<context:property-placeholder location="jdbc.properties"/>
+7、写相应的DAO，并且为这个DAO创建一个JDBCTemplate对象，通过JdbcTemplate对象可以方便的完成对数据库的操作
+8、为DAO注入相应的DataSource并且创建JdbcTemplate
+	@Resource
+	public void setDataSource(DataSource dataSource) {
+		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+9、完成数据对象的添加

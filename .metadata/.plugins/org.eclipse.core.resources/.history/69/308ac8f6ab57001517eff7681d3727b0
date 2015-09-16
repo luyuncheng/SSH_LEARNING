@@ -1,0 +1,15 @@
+package org.zttc.itat.model;
+
+import java.util.Set;
+
+public class Classroom {
+	private int id;
+	private String name;
+	private int grade;
+	//教室与学生是一对多的关系
+	private Set<Student> stus;
+	
+	//教室与专业是多对一的关系
+	private Special special;
+	
+}

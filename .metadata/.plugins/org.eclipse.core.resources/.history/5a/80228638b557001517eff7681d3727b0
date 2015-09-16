@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-mapping package="org.zttc.itat.model">
+    <class name="Student" table="t_stu">
+    	<!-- <cache usage="read-only"/> -->
+        <id name="id">
+          	<generator class="native"/>
+        </id>
+         <version name="version"/>
+        <property name="name"/>
+        <property name="sex"/>
+        <many-to-one name="classroom" column="cid" fetch="join"/>
+    </class>
+</hibernate-mapping>

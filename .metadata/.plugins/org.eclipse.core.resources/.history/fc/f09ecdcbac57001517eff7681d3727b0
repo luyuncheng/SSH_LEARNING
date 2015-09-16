@@ -1,0 +1,21 @@
+package org.zttc.itat.test;
+
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.zttc.itat.util.HibernateUtil;
+
+public class TestHQL {
+	public void test01(){
+		Session session =null;
+		try {
+			session = HibernateUtil.openSession();
+			session.beginTransaction();
+			session.getTransaction().commit();
+		} catch (  e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			 HibernateUtil.closeSession(session);
+		}
+	}
+}

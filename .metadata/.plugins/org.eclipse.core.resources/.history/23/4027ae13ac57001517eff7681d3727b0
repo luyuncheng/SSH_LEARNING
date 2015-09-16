@@ -1,0 +1,8 @@
+package org.zttc.itat.model;
+
+public class Special {
+	private int id;
+	private String name;
+	private String type;
+	
+}

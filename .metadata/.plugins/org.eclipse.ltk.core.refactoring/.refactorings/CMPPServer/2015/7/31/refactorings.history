@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy source folder &apos;log4j-1.2.15.jar&apos; to &apos;lib&apos;&#x0A;- Original project: &apos;CMPPServer&apos;&#x0A;- Destination element: &apos;lib&apos;&#x0A;- Original element: &apos;CMPPServer/lib/log4j-1.2.15.jar&apos;" description="Copy source folder" element1="/lib\/log4j-1.2.15.jar" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="1" stamp="1438170174354" target="/SSHWeb/WebContent/WEB-INF/lib" version="1.0"/>
+</session>

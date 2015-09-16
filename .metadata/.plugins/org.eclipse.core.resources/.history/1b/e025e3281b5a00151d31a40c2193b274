@@ -1,0 +1,5 @@
+package org.lyc.ustc.spring.log;
+
+public class Logger {
+
+}
