@@ -1,0 +1,36 @@
+由于Hibernate存在延迟加载的问题，当DAO的事务提交之后，session就关闭
+此时如果到显示层就没有办法获取对象，使用OpenSessionInViewer是解决延迟加载问题的方案
+解决的思路：
+1、在表示层开启Session
+	 需要在表示层获取Spring的工厂，以此获取Hibernate的SessionFactory
+2、在DAO层获取表示层的session
+	如果希望在DAO层获取表示层的数据，应该将要获取的数据存储到ThreadLocal
+3、当整个过程执行完毕之后再关闭session
+需要通过Filter来解决问题
+1、创建一个OpenSessionFilter
+	/**
+	*以下方法用来获取Spring的工厂和Hibernate的SessionFactory
+	**/
+	@Override
+	public void init(FilterConfig cfg) throws ServletException {
+		/**
+		 * 使用WebApplcaiontContextUtils.getWebApplicationContext(ServletContext)来获取WEb中的Spring工厂
+		 * 这种手段非常重要，一定要熟悉
+		 */
+		wac = WebApplicationContextUtils.getWebApplicationContext(cfg.getServletContext());
+		factory = (SessionFactory)wac.getBean("sessionFactory");
+	}
+2、通过ThreadLocal来处理session
+	private static ThreadLocal<Session> sessionHolder = new ThreadLocal<Session>();
+	
+	private static void setSession(Session session) {
+		sessionHolder.set(session);
+	}
+	
+	public static Session getSession() {
+		return sessionHolder.get();
+	}
+	
+	private static void removeSession() {
+		sessionHolder.remove();
+	}

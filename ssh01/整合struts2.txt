@@ -1,0 +1,35 @@
+1、导入Struts2的包(导入之后检查一下是否存在有冲突的包)
+2、导入Struts2和Spring的整合包（struts2-spring-plugin-2.3.4.1.jar）
+3、配置Struts2的struts.xml文件
+	<!-- 表示Action由Spring来进行创建，可以直接使用Spring依赖注入来注入 -->
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+4、创建action
+	/**
+	 * 此时等于用Spring来创建了userAction对象,在struts的配置文件中写action的class的时候
+	 * 就不能写类，而应该是userAction中对象
+	 * @author Administrator
+	 *
+	 */
+	@Controller("userAction")
+5、重新配置struts.xml的基于通配符的访问方式
+6、在web.xml中配置获取BeanFacotry的操作
+ 6.1、创建监听器获取Spring的工厂
+ <!-- 创建Spring的监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- Spring 的监听器可以通过这个上下文参数来获取beans.xml的位置 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:beans.xml</param-value>
+  </context-param>
+  6.2、创建Struts2的过滤器
+  	 <filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>

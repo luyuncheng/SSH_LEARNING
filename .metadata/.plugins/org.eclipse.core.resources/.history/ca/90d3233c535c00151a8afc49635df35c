@@ -1,0 +1,57 @@
+集成hibernate3和4有一定的区别，目前基本都在使用3，所以该部分的内容以3为基础
+1、导入hibernate的包和Spring的包
+   1.1、导入Spring的依赖包
+   1.2、导入Log4j的依赖包
+   1.3、导入dbcp的依赖包
+   1.4、导入Hibernate3的依赖包(hibernate3.jar,require文件中的所有,slf4j-api.jar,jpa文件夹中的包)
+2、创建beans.xml
+	2.1、使用DBCP创建dataSource(和集成JDBC一样)
+	2.2、创建Hibernate的SessionFactory
+		<!--创建Spring的SessionFactory工厂  -->
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+			<!-- 注入数据源 -->
+			<property name="dataSource" ref="dataSource" />
+			<!-- 设置Spring取那个包中查找相应的实体类 -->
+			<property name="packagesToScan">
+				<value>org.zttc.itat.model</value>
+			</property>
+			<property name="hibernateProperties">
+			<!-- 	<value>
+					hibernate.dialect=org.hibernate.dialect.HSQLDialect
+				</value> -->
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.format_sql">false</prop>
+				</props>
+			</property>
+	 	 </bean>
+3、为实体类添加hibernate的Annotation或者hbm文件
+4、创建基于Hibernate的DAO
+	4.1、在相应的DAO中注入相应的SessionFactory
+	4.2、如果通过Spring来管理相应的SessionFactory,不再使用factory.openSession()开启session，而应该是一facotry.getCurrentSession来打开Session，这个Session就会被Spring
+	所管理，此时开发人员不用进行事务控制，也不用关闭Session，全部有Spring容器来完成
+5、配置Spring事务处理，只有配置了事务处理之后，Spring才能有效的管理事务
+	<!-- 配置Spring的事务处理 -->
+		<!-- 创建事务管理器-->
+		<bean id="txManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+	<!-- 配置AOP，Spring是通过AOP来进行事务管理的 -->
+		<aop:config>
+		<!-- 设置pointCut表示哪些方法要加入事务处理 -->
+			<aop:pointcut id="allMethods"
+				expression="execution(* org.zttc.itat.dao.*.*(..))" />
+			<!-- 通过advisor来确定具体要加入事务控制的方法 -->
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />
+		</aop:config>
+	<!-- 配置哪些方法要加入事务控制 -->
+		<tx:advice id="txAdvice" transaction-manager="txManager">
+			<tx:attributes>
+			<!-- 让所有的方法都加入事务管理 -->
+				<tx:method name="*" propagation="REQUIRED"/>
+			</tx:attributes>
+		</tx:advice>
+	
