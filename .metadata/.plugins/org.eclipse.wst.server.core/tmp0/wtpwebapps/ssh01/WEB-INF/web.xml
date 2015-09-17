@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <!-- 创建Spring的监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- Spring 的监听器可以通过这个上下文参数来获取beans.xml的位置 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:beans.xml</param-value>
+    
+  </context-param>
+  <!-- Spring中提供了
+  org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
+  这个类来实现OpenSessionInViewer的操作 -->
+  <filter>
+		<filter-name>openSessionInViewerFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>SystemContextFilter</filter-name>
+		<filter-class>org.zttc.itat.filter.SystemContextFilter</filter-class>
+		<init-param>
+			<param-name>pageSize</param-name>
+			<param-value>15</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>SystemContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+  
+    <filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 如果把这个Filter发在Struts2的Filter之后，所有的请求都会被Struts2给控制，所以这个Filter就不起作用了
+	必须将这个Filter放在Struts2的Filter之前
+	 -->
+	<!-- <filter>
+		<filter-name>openSessionInViewerFilter</filter-name>
+		<filter-class>org.zttc.itat.filter.OpenSessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>openSessionInViewerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->	
+</web-app>
